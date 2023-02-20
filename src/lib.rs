@@ -65,6 +65,13 @@ fn get_internal() -> usize {
     syscall::getpid().unwrap()
 }
 
+#[cfg(target_arch = "wasm32"]
+#[inline]
+fn get_internal() -> usize {
+    // Each thread has a separate pid on Redox.
+    return 1
+}
+
 #[test]
 fn distinct_threads_have_distinct_ids() {
     use std::sync::mpsc;
