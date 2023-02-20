@@ -65,7 +65,7 @@ fn get_internal() -> usize {
     syscall::getpid().unwrap()
 }
 
-#[cfg(target_arch = "wasm32"]
+#[cfg(target_arch = "wasm32")]
 #[inline]
 fn get_internal() -> usize {
     // Each thread has a separate pid on Redox.
